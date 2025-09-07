@@ -6,14 +6,24 @@ import (
 )
 
 func main() {
-	employee.RepoTest()
 
 	job1 := employee.Job{JobName: "Dev", Salary: 3000, YearsReq: 2}
+	job2 := employee.Job{JobName: "PO", Salary: 8000, YearsReq: 3}
+
 	employee1 := employee.Employee{Id: 2, Name: "Gui", Job: job1}
+	employee2 := employee.Employee{Id: 1, Name: "Johnny Bodybuilder", Job: job2}
 
-	fmt.Printf("Hi my name is %v, I am a %v and I earn %v \n", employee1.Name, employee1.Job.JobName, employee1.Job.Salary)
+	employee.AddToRepo(employee1)
+	employee.AddToRepo(employee2)
 
-	total := 15 * 20 / 100
+	employee.RemoveFromRepo(2)
 
-	fmt.Println(total)
+	empList := employee.GetAllFromRepo()
+
+	for i := range len(empList) {
+		fmt.Println(employee.ToString(empList[i]))
+	}
+
+	fmt.Println(employee.GetFromRepo(1))
+
 }
